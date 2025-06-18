@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>word-para-pdf</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-indigo-50 text-gray-900 font-sans">
+
+  <header class="bg-indigo-700 text-white py-5 shadow-md">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">📝 word-para-pdf</h1>
+      <span class="text-sm">Ferramenta: <strong>Word ⇄ PDF</strong></span>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-12">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded shadow text-center">
+      <h2 class="text-3xl font-bold text-indigo-600 mb-2">Conversor Word ⇄ PDF</h2>
+      <p class="text-sm text-gray-600 mb-6">Envie arquivos .docx ou .pdf e converta com facilidade.</p>
+
+      <form action="/convert" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <input type="file" name="file" required class="block w-full text-sm p-2 border rounded" />
+        <select name="convert_to" class="p-2 border rounded w-full">
+          <option value="pdf">Converter DOCX para PDF</option>
+          <option value="docx">Converter PDF para DOCX</option>
+        </select>
+        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded">
+          Converter Agora
+        </button>
+      </form>
+
+      <p class="mt-4 text-xs text-gray-500">Sem cadastro. Seus arquivos não são armazenados.</p>
+    </div>
+  </main>
+
+  <footer class="bg-gray-100 text-center text-sm py-4 mt-8 text-gray-600">
+    © 2025 word-para-pdf. Todos os direitos reservados.
+  </footer>
+
+</body>
+</html>
