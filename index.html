@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Converta arquivos Word para PDF ou PDF para Word gratuitamente. Ferramenta simples, rápida e segura. Compatível com AdSense.">
+  <meta name="keywords" content="converter Word para PDF, PDF para Word, ferramenta online gratuita, converter documento">
+  <meta name="author" content="Ferramenta Simples">
+  <title>Conversor Word ⇄ PDF Grátis</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27><text y=%2732%27 font-size=%2732%27>❤️</text></svg>">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; text-align: center; }
+    header, footer { background: #fff; padding: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    main { padding: 2em; }
+    .upload-box { border: 2px dashed #ccc; padding: 2em; background: #fff; display: inline-block; }
+    .adsense { margin: 2em auto; max-width: 728px; height: 90px; background: #e0e0e0; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #666; }
+    .btn { background: #e53935; color: white; padding: 0.7em 2em; border: none; cursor: pointer; font-size: 1em; margin-top: 1em; border-radius: 4px; }
+    .btn:hover { background: #d32f2f; }
+    input[type=file] { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>❤️ Conversor Word ⇄ PDF</h1>
+    <div class="adsense">[Anúncio - Topo]</div>
+  </header>
+  <main>
+    <p>Selecione um arquivo Word ou PDF para converter:</p>
+    <div class="upload-box">
+      <form id="convert-form" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".doc,.docx,.pdf" required><br>
+        <button type="submit" class="btn">Converter</button>
+      </form>
+    </div>
+    <div class="adsense">[Anúncio - Meio da Página]</div>
+    <div id="resultado"></div>
+  </main>
+  <footer>
+    <div class="adsense">[Anúncio - Rodapé]</div>
+    <p>&copy; 2025 Conversor Simples - Ferramenta Gratuita</p>
+  </footer>
+  <script>
+    document.getElementById('convert-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const resultado = document.getElementById('resultado');
+      resultado.innerHTML = '<p>Convertendo arquivo...</p>';
+      try {
+        const res = await fetch('/convert', { method: 'POST', body: formData });
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'convertido.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+        resultado.innerHTML = '<p>Conversão concluída!</p>';
+      } catch (error) {
+        resultado.innerHTML = '<p>Erro ao converter o arquivo.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
